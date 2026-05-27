@@ -3,11 +3,14 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+
+load_dotenv(Path(__file__).resolve().parent / '.env')
 
 from auth import create_access_token, get_current_user, require_admin
 from database import (
